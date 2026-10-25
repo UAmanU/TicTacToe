@@ -1,4 +1,5 @@
 #include "include/output_handler.h"
+#include <stdio.h>
 void greeting(void)
 {
     printf("Hello! This is a TicTacToe game by AmanU!\n");
@@ -7,7 +8,7 @@ void goodbye(void)
 {
     printf("Goodbye!\n");
 }
-void ask_form_symbol_form(const char symbols[2])
+void ask_for_symbol_form(const char symbols[2])
 {
     printf("What symbol do you choose? %c or %c\n", symbols[0], symbols[1]);
 }
@@ -26,7 +27,7 @@ void print_tiles(const struct Tile tiles[9])
         printf("%c | %c | %c \n", tiles[i], tiles[i + 1], tiles[i + 2]);
         if (i <= 3)
         {
-            printf('-' * 9, "\n");
+            printf("---------\n");
         }
     }
 }

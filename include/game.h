@@ -1,5 +1,6 @@
 #ifndef GAME_H
 #define GAME_H
+#include <stdbool.h>
 #include "player.h"
 typedef struct Game
 {
@@ -8,8 +9,8 @@ typedef struct Game
     struct Player bot;
     struct Tile tiles[9];
     size_t free_tile_positions[9];
-    const size_t win_conditons[8][3];
-    const char symbols[2];
+    size_t win_conditons[8][3];
+    char symbols[2];
 };
 bool check_if_player_won(struct Game *game, struct Player *player);
 struct Game create_game(void);

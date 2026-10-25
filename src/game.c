@@ -3,21 +3,21 @@
 #include "include/output_handler.h"
 struct Game create_game(void)
 {
-    struct Tile tiles[9];
-    for (size_t i = 1; i < sizeof tiles / sizeof tiles[0]; i++)
+    struct Tile def_tiles[9];
+    for (size_t i = 1; i < sizeof def_tiles / sizeof def_tiles[0]; i++)
     {
         struct Tile tile = {
             .position = i,
             .symbol = ' ',
         };
-        tiles[i - 1] = tile;
+        def_tiles[i - 1] = tile;
     }
     struct Game game = {
         .bot = create_player(),
         .player = create_player(),
         .symbols = {'X', 'O'},
         .free_tile_positions = {1, 2, 3, 4, 5, 6, 7, 8, 9},
-        .tiles = tiles,
+        .tiles = *def_tiles,
         .win_conditons = {{1, 2, 3}, {4, 5, 6}, {7, 8, 9}, {1, 4, 7}, {2, 5, 8}, {3, 6, 9}, {1, 5, 9}, {3, 5, 7}}};
     return game;
 }
@@ -55,7 +55,7 @@ bool is_number_in_list(const size_t list[], const size_t number)
     }
     return false;
 }
-bool check_is_player_won(struct Game *game, struct Player *player)
+bool check_if_player_won(struct Game *game, struct Player *player)
 {
     for (size_t i = 0; i < sizeof game->win_conditons / sizeof game->win_conditons[0]; i++)
     {
@@ -117,8 +117,8 @@ void start_game(struct Game *game)
                 updated_free_tile_positions[i] = current_free_tile_pos;
             }
         }
-        *game->free_tile_positions = &updated_free_tile_positions;
-        print_tiles(&game->tiles);
+        *game->free_tile_positions = *updated_free_tile_positions;
+        print_tiles(game->tiles);
     }
     print_result(current_game_state);
     goodbye();
