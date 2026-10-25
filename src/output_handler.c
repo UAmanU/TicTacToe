@@ -19,10 +19,16 @@ void ask_for_continuing(void)
 {
     printf("Do you want to continue? Y - yes, N - no\n");
 }
-void print_tiles(const struct Tile tile[9])
+void print_tiles(const struct Tile tiles[9])
 {
-    // i'm so tired i can't write this algorithm
-    printf("Not ended");
+    for (int i = 0; i < 9; i += 3)
+    {
+        printf("%c | %c | %c \n", tiles[i], tiles[i + 1], tiles[i + 2]);
+        if (i <= 3)
+        {
+            printf('-' * 9, "\n");
+        }
+    }
 }
 void print_result(bool result)
 {
