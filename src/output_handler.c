@@ -19,7 +19,7 @@ void ask_for_continuing(void)
 {
     printf("Do you want to continue? Y - yes, N - no\n");
 }
-void print_tiles(const Tile tile[9])
+void print_tiles(const struct Tile tile[9])
 {
     // i'm so tired i can't write this algorithm
     printf("Not ended");
